@@ -16,7 +16,7 @@ bool esNumeroEntero(string numero)
 {
     for (int i = 0; i < numero.length(); i++)
     {
-        if ((numero[i] <= '0' && numero[i] >= '9'))
+        if ((numero[i] <= '0' || numero[i] >= '9'))
         {
             return false;
         }
@@ -28,7 +28,7 @@ bool esNumeroReal(string numero)
 {
     for (int i = 0; i < numero.length(); i++)
     {
-        if ((numero[i] <= '0' && numero[i] >= '9') || numero[i] != '.' || numero[i] != ',')
+        if ((numero[i] <= '0' || numero[i] >= '9') || numero[i] != '.' || numero[i] != ',')
         {
             return false;
         }
@@ -44,10 +44,9 @@ int stringToInt(string numero)
     return numeroInt;
     }else
     {
-        cout << "no es numero" << endl;
+        cout << "no es numero entero" << endl;
+        return 0;
     }
-    
-    return numeroInt;
 }
 // función de string a float
 float stringToFloat(string numero)
@@ -59,10 +58,38 @@ float stringToFloat(string numero)
         return numeroFloat;
     }else
     {
+        cout << "no es numero real" << endl;
+        return 0;
+    }
+}
+// función que nos dice si un número es primo
+bool esPrimo(string numeroString)
+{
+    int contador = 0;
+    if (esNumeroEntero(numeroString))
+    {
+        int numero=stringToInt(numeroString);
+        for (int i = 1; i <= numero; i++){
+        if (numero % i == 0) 
+        {
+            contador++;
+        }
+    }
+    if (contador == 2)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    }
+    else
+    {
         cout << "no es numero" << endl;
+        return false;
     }
     
-    return numeroFloat;
 }
 // funcion de intercambiar dos variables
 // void swap(int *x, int *y); asi se llama
