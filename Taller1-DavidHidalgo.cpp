@@ -18,16 +18,30 @@ tRegistroPtr registroPtr = new tRegistro;
 
 void menu()
 {
-    bool salir;
+    bool salir=false;
     int opcion;
     do
     {
-        cout << "1. Ingresar datos" << endl;
-        cin >> opcion;
-        cout << "2. Mostrar datos" << endl;
-        cin >> opcion;
-        cout << "3. Salir" << endl;
-        salir=true;
+        cout << "Menu" << endl; 
+        cout << "1. ..." << endl;
+        cout << "2. ..." << endl;
+        cout << "3. ..." << endl;
+        cout << "4. Salir" << endl;
+		cin >> opcion;
+		
+		switch (opcion)
+		{
+			case 1: cout << "Usted ha seleccionado la opción 1";
+			break;
+			case 2: cout << "Usted ha seleccionado la opción 2";
+			break;
+			case 3: cout << "Usted ha seleccionado la opción 3";
+			break;
+            case 4: {cout << "Usted ha seleccionado salir";
+            salir=true; break;}
+			default: cout << "Usted ha ingresado una opción incorrecta";
+			break;
+		}   
     } while (salir == false);
 }
 int main()
