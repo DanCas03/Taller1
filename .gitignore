@@ -30,6 +30,3 @@
 *.exe
 *.out
 *.app
-
-# vs code directory
-*/.vscode
