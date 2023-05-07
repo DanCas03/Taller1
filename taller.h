@@ -100,3 +100,48 @@ void swap(int a , int b ){
 	a = b;
 	b = aux;
 }
+//función para saber si un string es un número entero
+bool isInteger(string str) {
+    int i = 0;
+    for ( i < str.length(); i++;) {
+        if (str[i] < '0' || str[i] > '9') {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool soloEspacios(string str) {
+    for (int i = 0; i < str.length(); i++)
+        if (str[i] != ' ')
+            return true;
+    return false;
+}
+
+bool cadenaValida(string str){
+    if (str.empty())
+        return false;
+    else
+        if (soloEspacios(str))
+            return true;
+        else 
+            return false;   
+}
+
+bool esFloatValido(string &str) {
+    bool hasDecimalPoint = false;
+    for (char c : str) {
+        if (c == '.') {
+        if (hasDecimalPoint) return false;
+            hasDecimalPoint = true;
+        } else if (!isdigit(c)) {
+        return false;
+        }
+    }
+    try {
+    stof(str);
+    return true;
+    } catch (const invalid_argument &e) {
+    return false;
+    }
+}
