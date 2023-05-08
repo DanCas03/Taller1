@@ -17,7 +17,7 @@ bool validarArchivo(string nombreArchivo){
 }
 
 
-//una función para leer un archivo de texto
+/*una función para leer un archivo de texto
 void leerArchivo(string nombreArchivo){
     ifstream archivo(nombreArchivo);
     if (archivo.is_open()){
@@ -29,11 +29,27 @@ void leerArchivo(string nombreArchivo){
     }else{
         cout << "No se pudo abrir el archivo " << nombreArchivo << "." << endl;
     }
+}*/
+
+//función para añadir datos a un archivo de texto
+void añadirDatosArchivo(string nombreArchivo){
+    string linea;
+    ofstream archivo(nombreArchivo, ios::app);
+    char opcion = 's';
+    while (opcion == 's'){
+        cout << "¿Quieres añadir más texto? (s/n): ";
+        cin >> opcion;
+        cin.ignore(); // para ignorar el carácter de nueva línea en el búfer de entrada
+        if (opcion == 's'){
+            cout << "Introduce el texto que quieres añadir al archivo: ";
+            getline(cin, linea);
+        archivo << linea << endl;
+        }
+    }
+    archivo.close();
 }
 
-
-
-
+/*
 
 void añadirDatosArchivo(string nombreArchivo) {
     string linea;
@@ -52,7 +68,28 @@ void añadirDatosArchivo(string nombreArchivo) {
         }
     }
     archivo.close();
-}
+}*/
+
+/*void añadirDatosArchivo(string nombreArchivo) {
+    string linea;
+    ofstream archivo(nombreArchivo, ios::app);
+    if (!archivo.is_open()) {
+        archivo.open(nombreArchivo);
+    }
+    char opcion = 's';
+    do
+    {
+        cout << "Introduce el texto que quieres añadir al archivo: ";
+        cin >> linea;
+        getline(cin, linea);
+        cin.ignore(); // para ignorar el carácter de nueva línea en el búfer de entrada
+        archivo << linea << endl; 
+        cout << "¿Quieres añadir más texto? (s/n): ";
+        cin >> opcion;
+        
+    } while (opcion == 's');
+        archivo.close();
+}*/
 
 void imprimirDatosArchivo(string nombreArchivo) {
     ifstream archivo(nombreArchivo);
@@ -66,13 +103,32 @@ void imprimirDatosArchivo(string nombreArchivo) {
         cout << "No se pudo abrir el archivo " << nombreArchivo << "." << endl;
     }
 }
-/*
-void eliminarDatosArchivo(string nombreArchivo) {
+
+void eliminarTodosDatos(string nombreArchivo) {
     ofstream archivo(nombreArchivo);
     archivo.close();
 }
-*/
-void eliminarDatosArchivos(const string& nombreArchivo , string textoQueQueremosEliminar){
+
+//función para buscar un dato en un archivo de texto
+bool buscarDato(string nombreArchivo, string dato) {
+    ifstream archivo(nombreArchivo);
+    if (archivo.is_open()) {
+        string linea;
+        while (getline(archivo,linea)) {
+            if (linea == dato) {
+                archivo.close();
+                return true;
+            }
+        }
+        archivo.close();
+        return false;
+    } else {
+        cout << "No se pudo abrir el archivo " << nombreArchivo << "." << endl;
+        return false;
+    }
+} 
+
+void eliminarDatoEspecifico(const string& nombreArchivo , string textoQueQueremosEliminar){
 ifstream inputFile(nombreArchivo);
 ofstream templFile("temporal.txt");
 

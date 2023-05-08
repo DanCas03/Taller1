@@ -6,10 +6,13 @@
 
 using namespace std;
 bool validarArchivo(string nombreArchivo);
-void leerArchivo(string nombreArchivo);
+//void leerArchivo(string nombreArchivo);
 void añadirDatosArchivo(string nombreArchivo);
 void imprimirDatosArchivo(string nombreArchivo);
-void eliminarDatosArchivo(string nombreArchivo);
+void eliminarTodosDatos(string nombreArchivo);
+bool buscarDato(string nombreArchivo, string dato);
+void eliminarDatoEspecifico(string nombreArchivo);
+
 bool archivoVacio(string nombreArchivo);
 
 void introducirDatosArray(string array[], int tamano);
