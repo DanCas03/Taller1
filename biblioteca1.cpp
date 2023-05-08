@@ -7,7 +7,7 @@ using namespace std;
 
 //función para valdar una direccion de un archivo de texto
 bool validarArchivo(string nombreArchivo){
-    ifstream archivo(nombreArchivo);
+    ifstream archivo(nombreArchivo); 
     if (archivo.is_open()){
         archivo.close();
         return true;
@@ -58,7 +58,7 @@ void imprimirDatosArchivo(string nombreArchivo) {
     ifstream archivo(nombreArchivo);
     if (archivo.is_open()) {
         string linea;
-        while (getline(archivo, linea)) {
+        while (getline(archivo,linea)) {
             cout << linea << endl;
         }
         archivo.close();
@@ -66,10 +66,34 @@ void imprimirDatosArchivo(string nombreArchivo) {
         cout << "No se pudo abrir el archivo " << nombreArchivo << "." << endl;
     }
 }
-
+/*
 void eliminarDatosArchivo(string nombreArchivo) {
     ofstream archivo(nombreArchivo);
     archivo.close();
+}
+*/
+void eliminarDatosArchivos(const string& nombreArchivo , string textoQueQueremosEliminar){
+ifstream inputFile(nombreArchivo);
+ofstream templFile("temporal.txt");
+
+if(!inputFile.is_open()|| !templFile.is_open() ){
+    cerr<<"No se puede abrir el archivo."<<endl;
+    return;
+}
+
+string line;
+while(getline(inputFile, line)){
+ if (line.find(textoQueQueremosEliminar) == string::npos){
+templFile<<line<<endl;
+ }
+}
+// cerrar ambos archivos
+inputFile.close();
+templFile.close();
+// borrar el archivo original y renombrar el temporal con el nombre del archivo original
+remove(nombreArchivo.c_str());
+rename("temporal.txt", nombreArchivo.c_str() );
+
 }
 
 bool archivoVacio(string nombreArchivo) {
